@@ -2,8 +2,16 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import CityCard from "./CityCard";
+import { useState } from "react";
 
 export function AddCity() {
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const handeOnChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setInputValue(event.target.value);
+  };
   return (
     <Grid
       container
@@ -14,7 +22,13 @@ export function AddCity() {
       }}
     >
       <Grid item xs={10}>
-        <TextField fullWidth label='Search city or area ' id='fullWidth' />
+        <TextField
+          value={inputValue}
+          onChange={handeOnChange}
+          fullWidth
+          label='Search city or area '
+          id='fullWidth'
+        />
       </Grid>
       <Grid item xs={2}>
         <Button variant='outlined'>Search</Button>
