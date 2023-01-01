@@ -6,16 +6,18 @@ import { useState } from "react";
 
 export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
-  const [cityItem, setCictyItem] = useState<string>("");
+  const [cityItems, setCictyItems] = useState<string[]>([]);
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setInputValue(event.target.value);
   };
-
+  // Create copy of array and push new element(inputValue)
   const handleOnclick = () => {
-    setCictyItem(inputValue);
+    const renderCityItems = [...cityItems];
+    renderCityItems.push(inputValue);
+    setCictyItems(renderCityItems);
   };
   return (
     <Grid
@@ -40,7 +42,7 @@ export function AddCity() {
           Search
         </Button>
       </Grid>
-      <CityCards cityItem={cityItem} />
+      {/* <CityCards renderCityItems={renderCityItems} /> */}
     </Grid>
   );
 }
