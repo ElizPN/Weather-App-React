@@ -1,16 +1,21 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import CityCard from "./CityCard";
+import CityCards from "./CityCards";
 import { useState } from "react";
 
 export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
+  const [cityItem, setCictyItem] = useState<string>("");
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setInputValue(event.target.value);
+  };
+
+  const handleOnclick = () => {
+    setCictyItem(inputValue);
   };
   return (
     <Grid
@@ -31,9 +36,11 @@ export function AddCity() {
         />
       </Grid>
       <Grid item xs={2}>
-        <Button variant='outlined'>Search</Button>
+        <Button onClick={handleOnclick} variant='outlined'>
+          Search
+        </Button>
       </Grid>
-      <CityCard />
+      <CityCards cityItem={cityItem} />
     </Grid>
   );
 }
