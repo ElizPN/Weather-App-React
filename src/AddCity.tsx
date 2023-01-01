@@ -1,6 +1,7 @@
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
+import CityCard from "./CityCard";
 
 export function AddCity() {
   return (
@@ -18,6 +19,7 @@ export function AddCity() {
       <Grid item xs={2}>
         <Button variant='outlined'>Search</Button>
       </Grid>
+      <CityCard />
     </Grid>
   );
 }
