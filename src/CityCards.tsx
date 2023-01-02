@@ -3,8 +3,11 @@ import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { nanoid } from "nanoid";
 
+interface CityItemsProps {
+  cityItems: string[];
+}
 
-export default function CityCards({ cityItems }: any) {
+export default function CityCards({ cityItems }: CityItemsProps) {
   return (
     <Box
       sx={{
