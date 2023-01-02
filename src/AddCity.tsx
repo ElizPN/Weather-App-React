@@ -13,11 +13,12 @@ export function AddCity() {
   ) => {
     setInputValue(event.target.value);
   };
-  // Create copy of array and push new element(inputValue)
+
   const handleOnclick = () => {
     const renderCityItems = [...cityItems];
     renderCityItems.push(inputValue);
     setCictyItems(renderCityItems);
+
   };
   return (
     <Grid
@@ -42,7 +43,7 @@ export function AddCity() {
           Search
         </Button>
       </Grid>
-      {/* <CityCards renderCityItems={renderCityItems} /> */}
+      <CityCards cityItems={cityItems} />
     </Grid>
   );
 }
