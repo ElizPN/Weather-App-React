@@ -2,9 +2,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import { nanoid } from "nanoid";
+import { CityItem } from "./AddCity";
 
 interface CityItemsProps {
-  cityItems: string[];
+  cityItems: CityItem[];
 }
 
 export default function CityCards({ cityItems }: CityItemsProps) {
@@ -20,9 +21,13 @@ export default function CityCards({ cityItems }: CityItemsProps) {
         },
       }}
     >
-      {cityItems.map((cityItem: any) => (
+      {cityItems.map((item: CityItem) => (
         <Paper elevation={3} key={nanoid()}>
-          {cityItem}
+          <Box>{item.cityName}</Box>
+          <Box>{item.temperature}</Box>
+          <Box>{item.countryName}</Box>
+          <Box>{item.weatherDecription}</Box>
+          <Box>{item.weatherIcon}</Box>
         </Paper>
       ))}
     </Box>
