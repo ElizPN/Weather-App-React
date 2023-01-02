@@ -6,9 +6,17 @@ import { useState } from "react";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
+export interface CityItem {
+  cityName: string;
+  temperature: number;
+  countryName: string;
+  weatherDecription: string;
+  weatherIcon: string;
+}
+
 export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
-  const [cityItems, setCictyItems] = useState<string[]>([]);
+  const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
   const handeOnChange = (
@@ -18,16 +26,23 @@ export function AddCity() {
   };
 
   const handleOnclick = () => {
-    const renderCityItems = [...cityItems];
-    renderCityItems.push(inputValue);
-    setCictyItems(renderCityItems);
-
     fetch(url)
       .then((response) => response.json())
-      .then((data) => {
-        console.log(data.weather[0].description);
+      .then((weatherData) => {
+        const { weather, main, sys, name } = weatherData;
 
-        const { weather, main, sys, name } = data;
+        const cityItem = {
+          cityName: name,
+          temperature: Math.round(main.temp),
+          countryName: sys.country,
+          weatherDecription: weather[0].description,
+          weatherIcon: weather[0].icon,
+        };
+
+        const renderCityItems = [...cityItems];
+        renderCityItems.push(cityItem);
+        setCictyItems(renderCityItems);
+        console.log(cityItems);
       });
   };
 
