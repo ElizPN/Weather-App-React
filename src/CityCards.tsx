@@ -24,7 +24,7 @@ export default function CityCards({ cityItems }: CityItemsProps) {
       {cityItems.map((item: CityItem) => (
         <Paper elevation={3} key={nanoid()}>
           <Box>{item.cityName}</Box>
-          <Box>{item.temperature}</Box>
+          <Box>{item.temperature} °C</Box>
           <Box>{item.countryName}</Box>
           <Box>{item.weatherDecription}</Box>
           <Box>{item.weatherIcon}</Box>
