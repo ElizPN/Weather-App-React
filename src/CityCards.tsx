@@ -28,6 +28,9 @@ export default function CityCards({ cityItems }: CityItemsProps) {
           <Box>{item.countryName}</Box>
           <Box>{item.weatherDecription}</Box>
           <Box>{item.weatherIcon}</Box>
+          <figure>
+            <img src='item.weatherIcon' />
+          </figure>
         </Paper>
       ))}
     </Box>

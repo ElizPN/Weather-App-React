@@ -3,6 +3,7 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
 import { useState } from "react";
+import icon from "./icon-moon.png";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -31,12 +32,16 @@ export function AddCity() {
       .then((weatherData) => {
         const { weather, main, sys, name } = weatherData;
 
+        // const icon = `img/weather-icons/${weather[0].icon}.svg`;
+        //     const icon = "img/weather-icons/01n.svg";
+        // console.log(typeof icon);
+
         const cityItem = {
           cityName: name,
           temperature: Math.round(main.temp),
           countryName: sys.country,
           weatherDecription: weather[0].description,
-          weatherIcon: weather[0].icon,
+          weatherIcon: icon,
         };
 
         const renderCityItems = [...cityItems];
