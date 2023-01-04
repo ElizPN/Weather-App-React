@@ -6,6 +6,7 @@ import { useState } from "react";
 import icon from "./icon-moon.png";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
+import Container from "@mui/material/Container";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -59,35 +60,38 @@ export function AddCity() {
   };
 
   return (
-    <Grid
-      container
-      sx={{
-        width: 500,
-        maxWidth: "100%",
-        m: 10,
-      }}
+    <Box
+      m={10}
+
+      // sx={{
+      //   width: 1000,
+      //   maxWidth: "100%",
+      //   m: 10,
+      // }}
     >
-      <Grid item xs={10}>
-        <TextField
-          size='small'
-          value={inputValue}
-          onChange={handeOnChange}
-          fullWidth
-          label='Search city or area '
-          id='fullWidth'
-        />
-        <Box>{err}</Box>
-      </Grid>
-      <Grid item xs={2}>
-        <Button
-          onClick={handleOnclick}
-          variant='outlined'
-          sx={{ backgroundColor: "#EFA00B "}}
-        >
-          <img src={imgPlus} alt='Plus circle' />
-        </Button>
+      <Grid container>
+        <Grid item xs={6} md={4} lg={4}>
+          <TextField
+            size='small'
+            value={inputValue}
+            onChange={handeOnChange}
+            fullWidth
+            label='Search city or area '
+            id='fullWidth'
+          />
+          <Box>{err}</Box>
+        </Grid>
+        <Grid item xs={2}>
+          <Button
+            onClick={handleOnclick}
+            variant='outlined'
+            sx={{ backgroundColor: "#EFA00B " }}
+          >
+            <img src={imgPlus} alt='Plus circle' />
+          </Button>
+        </Grid>
       </Grid>
       <CityCards cityItems={cityItems} />
-    </Grid>
+    </Box>
   );
 }
