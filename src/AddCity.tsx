@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
 import { useState } from "react";
 import icon from "./icon-moon.png";
+import Box from "@mui/material/Box";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -18,6 +19,7 @@ export interface CityItem {
 export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
+  const [err, setErr] = useState<string | null>(null);
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
   const handeOnChange = (
@@ -28,13 +30,14 @@ export function AddCity() {
 
   const handleOnclick = () => {
     fetch(url)
-      .then((response) => response.json())
+      .then((response) => {
+        return response.json();
+      })
       .then((weatherData) => {
+        if (weatherData.cod === "404") {
+          throw new Error(`${weatherData.cod}, ${weatherData.message}`);
+        }
         const { weather, main, sys, name } = weatherData;
-
-        // const icon = `img/weather-icons/${weather[0].icon}.svg`;
-        //     const icon = "img/weather-icons/01n.svg";
-        // console.log(typeof icon);
 
         const cityItem = {
           cityName: name,
@@ -47,8 +50,11 @@ export function AddCity() {
         const renderCityItems = [...cityItems];
         renderCityItems.push(cityItem);
         setCictyItems(renderCityItems);
-        console.log(cityItems);
+      })
+      .catch(() => {
+        setErr("Please search for a valid city!");
       });
+    setErr("");
   };
 
   return (
@@ -68,6 +74,7 @@ export function AddCity() {
           label='Search city or area '
           id='fullWidth'
         />
+        <Box>{err}</Box>
       </Grid>
       <Grid item xs={2}>
         <Button onClick={handleOnclick} variant='outlined'>
