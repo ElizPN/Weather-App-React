@@ -4,7 +4,7 @@ import "./App.css";
 import { AddCity } from "./AddCity";
 
 function App() {
-  return <AddCity/>;
+  return <AddCity />;
 }
 
 export default App;
