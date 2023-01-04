@@ -31,7 +31,7 @@ body {
   color: var(--p-tint-90);
 }
 
-figure {
+/* figure {
   margin: 0;
   padding: 0;
 }
@@ -43,7 +43,7 @@ img {
 
 .container {
   padding: 4rem 2rem;
-}
+} */
 
 /* ================================================= */
 /* Typography */
