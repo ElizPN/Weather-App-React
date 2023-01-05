@@ -115,16 +115,16 @@ input[type="text"] {
   transition: var(--global-transition);
 }
 
-input::placeholder {
+/* input::placeholder {
   color: var(--p-tint-40);
-}
+} */
 
 input:focus,
 input:hover {
   background-color: var(--p-shade-50);
 }
 
-form button {
+/* form button {
   height: 2.75rem;
   width: 2.75rem;
   background-color: var(--secondary);
@@ -135,11 +135,11 @@ form button {
   justify-content: center;
   transition: var(--global-transition);
   cursor: pointer;
-}
+} */
 
-form button:hover {
+/* form button:hover {
   background-color: var(--p-shade-80);
-}
+} */
 
 form button:active {
   background-color: var(--p-shade-50);

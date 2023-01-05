@@ -76,7 +76,7 @@ export function AddCity() {
             value={inputValue}
             onChange={handeOnChange}
             fullWidth
-            label='Search city or area '
+            placeholder='e.g. Stockholm'
             id='fullWidth'
           />
           <Box>{err}</Box>
