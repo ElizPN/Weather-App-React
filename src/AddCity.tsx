@@ -69,7 +69,7 @@ export function AddCity() {
       //   m: 10,
       // }}
     >
-      <Grid container>
+      <Grid container spacing={1}>
         <Grid item xs={6} md={4} lg={4}>
           <TextField
             size='small'
@@ -85,7 +85,7 @@ export function AddCity() {
           <Button
             onClick={handleOnclick}
             variant='outlined'
-            sx={{ backgroundColor: "#EFA00B " }}
+            sx={{ backgroundColor: "#EFA00B ", height: 40 }}
           >
             <img src={imgPlus} alt='Plus circle' />
           </Button>
