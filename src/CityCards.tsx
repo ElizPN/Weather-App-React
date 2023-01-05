@@ -11,20 +11,7 @@ interface CityItemsProps {
 
 export default function CityCards({ cityItems }: CityItemsProps) {
   return (
-    <Grid
-      container
-      gap={2}
-      mt={10}
-      // sx={{
-      //   display: "flex",
-      //   flexWrap: "wrap",
-      //   "& > :not(style)": {
-      //     m: 2,
-      //     width: 300,
-      //     height: 300,
-      //   },
-      // }}
-    >
+    <Grid container gap={2} mt={10}>
       {cityItems.map((item: CityItem) => (
         <Grid key={nanoid()} item xs={6} md={4} lg={3}>
           <Paper elevation={3}>

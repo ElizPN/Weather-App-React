@@ -6,7 +6,6 @@ import { useState } from "react";
 import icon from "./icon-moon.png";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
-import Container from "@mui/material/Container";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -22,6 +21,7 @@ export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
   const handeOnChange = (
@@ -57,18 +57,11 @@ export function AddCity() {
         setErr("Please search for a valid city!");
       });
     setErr("");
+    console.log(cityItems);
   };
 
   return (
-    <Box
-      m={10}
-
-      // sx={{
-      //   width: 1000,
-      //   maxWidth: "100%",
-      //   m: 10,
-      // }}
-    >
+    <Box m={10}>
       <Grid container spacing={1}>
         <Grid item xs={6} md={4} lg={4}>
           <TextField
