@@ -7,9 +7,10 @@ import Grid from "@mui/material/Grid";
 
 interface CityItemsProps {
   cityItems: CityItem[];
+ 
 }
 
-export default function CityCards({ cityItems }: CityItemsProps) {
+export default function CityCards({ cityItems}: CityItemsProps) {
   return (
     <Grid container gap={2} mt={10}>
       {cityItems.map((item: CityItem) => (
