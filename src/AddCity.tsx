@@ -21,7 +21,7 @@ export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
-  // const [sameCity]
+  const [sameCity, setSameCity] = useState<string>("");
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
@@ -52,7 +52,7 @@ export function AddCity() {
         if (cityItems.length > 0) {
           for (const item of cityItems) {
             if (name === item.cityName) {
-              console.log("You know the weather of this city");
+              setSameCity("You know the weather of this city");
             } else {
               const renderCityItems = [...cityItems];
               renderCityItems.push(cityItem);
@@ -84,7 +84,7 @@ export function AddCity() {
             id='fullWidth'
           />
           <Box>{err}</Box>
-          <Box>{}</Box>
+          <Box>{sameCity}</Box>
         </Grid>
         <Grid item xs={2}>
           <Button
