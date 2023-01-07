@@ -21,7 +21,7 @@ export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
-  const [sameCity, setSameCity] = useState<string>("");
+  const [sameCityMessage, setSameCityMessage] = useState<string>("");
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
@@ -49,21 +49,30 @@ export function AddCity() {
           weatherDecription: weather[0].description,
           weatherIcon: icon,
         };
-        if (cityItems.length > 0) {
-          for (const item of cityItems) {
-            if (name === item.cityName) {
-              setSameCity("You know the weather of this city");
-            } else {
-              const renderCityItems = [...cityItems];
-              renderCityItems.push(cityItem);
-              setCictyItems(renderCityItems);
-            }
-          }
+
+        // Get cardExists: ckeck if new card is already in CardList :
+        // Loop over CardList and check if newCard equals current card, then set cardExists to true
+
+        const checkIsEqual = (curretCard: CityItem ) =>
+          name === curretCard.cityName
+
+         const cityItemsFiltered =  cityItems.filter(checkIsEqual);
+  
+         const cardExists = cityItemsFiltered.length > 0 
+
+        if (cardExists) {
+          setSameCityMessage("You know the weather of this city");
         } else {
           const renderCityItems = [...cityItems];
           renderCityItems.push(cityItem);
           setCictyItems(renderCityItems);
+          setSameCityMessage("");
+          setInputValue("");
         }
+
+        // Add error message or add new card to CardList (depends on cardExists true or false)
+
+       
       })
       .catch(() => {
         setErr("Please search for a valid city!");
@@ -84,7 +93,7 @@ export function AddCity() {
             id='fullWidth'
           />
           <Box>{err}</Box>
-          <Box>{sameCity}</Box>
+          <Box>{sameCityMessage}</Box>
         </Grid>
         <Grid item xs={2}>
           <Button
