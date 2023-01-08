@@ -3,9 +3,9 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
 import { useState } from "react";
-import icon from "./icon-moon.png";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
+import Card from "@mui/material/Card";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -41,6 +41,9 @@ export function AddCity() {
           throw new Error(`${weatherData.cod}, ${weatherData.message}`);
         }
         const { weather, main, sys, name } = weatherData;
+        const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
+        const background =
+          `img/weather-animations/${weather[0]["main"]}.gif`.toLowerCase();
 
         const cityItem = {
           cityName: name,
@@ -51,13 +54,9 @@ export function AddCity() {
         };
 
         // Get cardExists: ckeck if new card is already in CardList :
-        // Loop over CardList and check if newCard equals current card, then set cardExists to true
-
         const checkIsEqual = (curretCard: CityItem) =>
           name === curretCard.cityName;
-
         const cityItemsFiltered = cityItems.filter(checkIsEqual);
-
         const cardExists = cityItemsFiltered.length > 0;
 
         if (cardExists) {
@@ -92,7 +91,7 @@ export function AddCity() {
             placeholder='e.g. Stockholm'
             id='fullWidth'
           />
-          <Box>{err}</Box>
+          <Card sx={{ backgroundColor: "#162b47" }}>{err}</Card>
           <Box>{sameCityMessage}</Box>
         </Grid>
         <Grid item xs={2}>
