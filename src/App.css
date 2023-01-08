@@ -156,6 +156,7 @@ form button:active {
   transition: var(--global-transition);
   position: relative;
   z-index: -1;
+  color: #050b12;
 }
 
 .form-msg.visible {
