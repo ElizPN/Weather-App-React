@@ -1,6 +1,4 @@
-import * as React from "react";
 import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
 import { nanoid } from "nanoid";
 import { CityItem } from "./AddCity";
 import Grid from "@mui/material/Grid";
@@ -25,7 +23,9 @@ export default function CityCards({ cityItems }: CityItemsProps) {
               </Typography>
             </CardContent>
 
-            <Box>{item.weatherIcon}</Box>
+            <Box>
+              <img src={item.weatherIcon} />
+            </Box>
           </Card>
         </Grid>
       ))}
