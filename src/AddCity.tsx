@@ -53,15 +53,15 @@ export function AddCity() {
         // Get cardExists: ckeck if new card is already in CardList :
         // Loop over CardList and check if newCard equals current card, then set cardExists to true
 
-        const checkIsEqual = (curretCard: CityItem ) =>
-          name === curretCard.cityName
+        const checkIsEqual = (curretCard: CityItem) =>
+          name === curretCard.cityName;
 
-         const cityItemsFiltered =  cityItems.filter(checkIsEqual);
-  
-         const cardExists = cityItemsFiltered.length > 0 
+        const cityItemsFiltered = cityItems.filter(checkIsEqual);
+
+        const cardExists = cityItemsFiltered.length > 0;
 
         if (cardExists) {
-          setSameCityMessage("You know the weather of this city");
+          setSameCityMessage("The weather of this city is already shown");
         } else {
           const renderCityItems = [...cityItems];
           renderCityItems.push(cityItem);
@@ -71,13 +71,13 @@ export function AddCity() {
         }
 
         // Add error message or add new card to CardList (depends on cardExists true or false)
-
-       
       })
       .catch(() => {
         setErr("Please search for a valid city!");
       });
     setErr("");
+    setInputValue("");
+    setSameCityMessage("");
   };
 
   return (
