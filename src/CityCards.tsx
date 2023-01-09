@@ -24,7 +24,7 @@ export default function CityCards({ cityItems }: CityItemsProps) {
             </CardContent>
 
             <Box>
-              <img src={item.weatherIcon} />
+              <img src={item.weatherIcon} alt="weatherIcon"/>
             </Box>
           </Card>
         </Grid>
