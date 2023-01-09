@@ -68,7 +68,7 @@ export function AddCity() {
         const cardExists = cityItemsFiltered.length > 0;
 
         if (cardExists) {
-          setSameCityMessage("The weather of this city is already shown");
+          setSameCityMessage("The weather of this city is already shown 😉");
         } else {
           const renderCityItems = [...cityItems];
           renderCityItems.push(cityItem);
