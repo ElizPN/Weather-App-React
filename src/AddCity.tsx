@@ -22,6 +22,7 @@ const StyledCardMessage = styled(Card)(() => ({
   backgroundColor: "#162b47",
   color: "#efa00b",
   marginTop: 5,
+  padding: 2,
 }));
 
 export function AddCity() {
@@ -98,9 +99,10 @@ export function AddCity() {
             placeholder='e.g. Stockholm'
             id='fullWidth'
           />
-
-          <StyledCardMessage>{err}</StyledCardMessage>
-          <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
+          {err && <StyledCardMessage>{err}</StyledCardMessage>}
+          {sameCityMessage && (
+            <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
+          )}
         </Grid>
         <Grid item xs={2}>
           <Button
