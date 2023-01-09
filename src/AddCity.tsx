@@ -6,6 +6,7 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
 import Card from "@mui/material/Card";
+import { styled } from "@mui/material/styles";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -16,6 +17,12 @@ export interface CityItem {
   weatherDecription: string;
   weatherIcon: string;
 }
+
+const StyledCardMessage = styled(Card)(() => ({
+  backgroundColor: "#162b47",
+  color: "#efa00b",
+  marginTop: 5,
+}));
 
 export function AddCity() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -81,7 +88,7 @@ export function AddCity() {
 
   return (
     <Box m={10}>
-      <Grid container spacing={1}>
+      <Grid container spacing={1} minWidth={500}>
         <Grid item xs={6} md={4} lg={4}>
           <TextField
             size='small'
@@ -91,8 +98,9 @@ export function AddCity() {
             placeholder='e.g. Stockholm'
             id='fullWidth'
           />
-          <Card sx={{ backgroundColor: "#162b47" }}>{err}</Card>
-          <Box>{sameCityMessage}</Box>
+
+          <StyledCardMessage>{err}</StyledCardMessage>
+          <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
         </Grid>
         <Grid item xs={2}>
           <Button
