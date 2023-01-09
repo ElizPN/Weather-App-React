@@ -2,11 +2,13 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+import { wait } from "@testing-library/user-event/dist/utils";
+import { fetchWeatherData } from "./request";
 
 const apiKey = "936a43fe9c1da3254004f3c7a1c14348";
 
@@ -26,12 +28,24 @@ const StyledCardMessage = styled(Card)(() => ({
 }));
 
 export function AddCity() {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>("Oslo");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
+
+  useEffect(() => {
+    async function getWeatherData() {
+      const apiData = await fetchWeatherData(url);
+      // should be setState?
+      console.log(apiData);
+    }
+
+    getWeatherData();
+  }, []);
+
+  // should I wrapp useEffect to handleOnclick
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
