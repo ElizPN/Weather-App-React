@@ -50,8 +50,6 @@ export function AddCity() {
         }
         const { weather, main, sys, name } = weatherData;
         const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
-        const background =
-          `img/weather-animations/${weather[0]["main"]}.gif`.toLowerCase();
 
         const cityItem = {
           cityName: name,
