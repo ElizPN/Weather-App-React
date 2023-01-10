@@ -39,48 +39,46 @@ export function WeatherContainer() {
     setInputValue(event.target.value);
   };
 
-  const handleOnclick = () => {
+  const handleOnclick = async () => {
     if (!inputValue) {
       return;
     }
 
-    fetchWeatherData(inputValue)
-      .then((weatherData) => {
-        if (weatherData.cod === "404") {
-          throw new Error(`${weatherData.cod}, ${weatherData.message}`);
-        }
-        const { weather, main, sys, name } = weatherData;
-        const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
+    try {
+      const weatherData = await fetchWeatherData(inputValue);
+      if (weatherData.cod === "404") {
+        throw new Error(`${weatherData.cod}, ${weatherData.message}`);
+      }
+      const { weather, main, sys, name } = weatherData;
+      const icon = require(`img/weather-icons/${weather[0]["icon"]}.svg`;
 
-        const cityItem = {
-          cityName: name,
-          temperature: Math.round(main.temp),
-          countryName: sys.country,
-          weatherDecription: weather[0].description,
-          weatherIcon: icon,
-        };
+      const cityItem = {
+        cityName: name,
+        temperature: Math.round(main.temp),
+        countryName: sys.country,
+        weatherDecription: weather[0].description,
+        weatherIcon: icon,
+      };
 
-        // Get cardExists: ckeck if new card is already in CardList :
-        const checkIsEqual = (curretCard: CityItem) =>
-          name === curretCard.cityName;
-        const cityItemsFiltered = cityItems.filter(checkIsEqual);
-        const cardExists = cityItemsFiltered.length > 0;
+      // Get cardExists: ckeck if new card is already in CardList :
+      const checkIsEqual = (curretCard: CityItem) =>
+        name === curretCard.cityName;
+      const cityItemsFiltered = cityItems.filter(checkIsEqual);
+      const cardExists = cityItemsFiltered.length > 0;
 
-        if (cardExists) {
-          setSameCityMessage("The weather of this city is already shown 😉");
-        } else {
-          const renderCityItems = [...cityItems];
-          renderCityItems.push(cityItem);
-          setCictyItems(renderCityItems);
-          setSameCityMessage("");
-          setInputValue("");
-        }
+      if (cardExists) {
+        setSameCityMessage("The weather of this city is already shown 😉");
+      } else {
+        const renderCityItems = [...cityItems];
+        renderCityItems.push(cityItem);
+        setCictyItems(renderCityItems);
+        setSameCityMessage("");
+        setInputValue("");
+      }
+    } catch {
+      setErr("Please search for a valid city!");
+    }
 
-        // Add error message or add new card to CardList (depends on cardExists true or false)
-      })
-      .catch(() => {
-        setErr("Please search for a valid city!");
-      });
     setErr("");
     setInputValue("");
     setSameCityMessage("");
