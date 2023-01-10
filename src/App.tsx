@@ -1,10 +1,10 @@
 import React from "react";
+import { WeatherContainer } from "./WeatherContainer";
 
 import "./App.css";
-import { AddCity } from "./AddCity";
 
 function App() {
-  return <AddCity />;
+  return <WeatherContainer />;
 }
 
 export default App;

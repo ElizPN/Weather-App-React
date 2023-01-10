@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import { nanoid } from "nanoid";
-import { CityItem } from "./AddCity";
+import { CityItem } from "./WeatherContainer";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { CardContent, CardHeader, Typography } from "@mui/material";
@@ -24,7 +24,7 @@ export default function CityCards({ cityItems }: CityItemsProps) {
             </CardContent>
 
             <Box>
-              <img src={item.weatherIcon} alt="weatherIcon"/>
+              <img src={item.weatherIcon} alt='weatherIcon' />
             </Box>
           </Card>
         </Grid>

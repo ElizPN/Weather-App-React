@@ -2,14 +2,12 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
-import {  useState } from "react";
+import { useState } from "react";
 import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { fetchWeatherData } from "./weatherService";
-
-
 
 export interface CityItem {
   cityName: string;
@@ -26,12 +24,11 @@ const StyledCardMessage = styled(Card)(() => ({
   padding: 2,
 }));
 
-export function AddCity() {
+export function WeatherContainer() {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
-
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
