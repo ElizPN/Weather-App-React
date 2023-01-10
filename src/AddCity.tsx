@@ -32,7 +32,6 @@ export function AddCity() {
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
 
-  // const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=${apiKey}&units=metric`;
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
