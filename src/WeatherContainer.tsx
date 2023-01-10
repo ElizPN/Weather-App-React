@@ -50,7 +50,7 @@ export function WeatherContainer() {
         throw new Error(`${weatherData.cod}, ${weatherData.message}`);
       }
       const { weather, main, sys, name } = weatherData;
-      const icon = require(`img/weather-icons/${weather[0]["icon"]}.svg`;
+      const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
 
       const cityItem = {
         cityName: name,
