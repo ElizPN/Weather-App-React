@@ -1,13 +1,16 @@
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
 import CityCards from "./CityCards";
-import { useState } from "react";
+import {
+  JSXElementConstructor,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useState,
+} from "react";
 import Box from "@mui/material/Box";
-import imgPlus from "./img/plus-circle.svg";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { fetchWeatherData } from "./weatherService";
+import { AddCity } from "./AddCity";
 
 export interface CityItem {
   cityName: string;
@@ -17,7 +20,7 @@ export interface CityItem {
   weatherIcon: string;
 }
 
-const StyledCardMessage = styled(Card)(() => ({
+export const StyledCardMessage = styled(Card)(() => ({
   backgroundColor: "#162b47",
   color: "#efa00b",
   marginTop: 5,
@@ -37,44 +40,47 @@ export function WeatherContainer() {
   };
 
   const handleOnclick = () => {
-    inputValue &&
-      fetchWeatherData(inputValue)
-        .then((weatherData) => {
-          if (weatherData.cod === "404") {
-            throw new Error(`${weatherData.cod}, ${weatherData.message}`);
-          }
-          const { weather, main, sys, name } = weatherData;
-          const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
+    if (!inputValue) {
+      return;
+    }
 
-          const cityItem = {
-            cityName: name,
-            temperature: Math.round(main.temp),
-            countryName: sys.country,
-            weatherDecription: weather[0].description,
-            weatherIcon: icon,
-          };
+    fetchWeatherData(inputValue)
+      .then((weatherData) => {
+        if (weatherData.cod === "404") {
+          throw new Error(`${weatherData.cod}, ${weatherData.message}`);
+        }
+        const { weather, main, sys, name } = weatherData;
+        const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
 
-          // Get cardExists: ckeck if new card is already in CardList :
-          const checkIsEqual = (curretCard: CityItem) =>
-            name === curretCard.cityName;
-          const cityItemsFiltered = cityItems.filter(checkIsEqual);
-          const cardExists = cityItemsFiltered.length > 0;
+        const cityItem = {
+          cityName: name,
+          temperature: Math.round(main.temp),
+          countryName: sys.country,
+          weatherDecription: weather[0].description,
+          weatherIcon: icon,
+        };
 
-          if (cardExists) {
-            setSameCityMessage("The weather of this city is already shown 😉");
-          } else {
-            const renderCityItems = [...cityItems];
-            renderCityItems.push(cityItem);
-            setCictyItems(renderCityItems);
-            setSameCityMessage("");
-            setInputValue("");
-          }
+        // Get cardExists: ckeck if new card is already in CardList :
+        const checkIsEqual = (curretCard: CityItem) =>
+          name === curretCard.cityName;
+        const cityItemsFiltered = cityItems.filter(checkIsEqual);
+        const cardExists = cityItemsFiltered.length > 0;
 
-          // Add error message or add new card to CardList (depends on cardExists true or false)
-        })
-        .catch(() => {
-          setErr("Please search for a valid city!");
-        });
+        if (cardExists) {
+          setSameCityMessage("The weather of this city is already shown 😉");
+        } else {
+          const renderCityItems = [...cityItems];
+          renderCityItems.push(cityItem);
+          setCictyItems(renderCityItems);
+          setSameCityMessage("");
+          setInputValue("");
+        }
+
+        // Add error message or add new card to CardList (depends on cardExists true or false)
+      })
+      .catch(() => {
+        setErr("Please search for a valid city!");
+      });
     setErr("");
     setInputValue("");
     setSameCityMessage("");
@@ -82,31 +88,13 @@ export function WeatherContainer() {
 
   return (
     <Box m={10}>
-      <Grid container spacing={1} minWidth={500}>
-        <Grid item xs={6} md={4} lg={4}>
-          <TextField
-            size='small'
-            value={inputValue}
-            onChange={handeOnChange}
-            fullWidth
-            placeholder='e.g. Stockholm'
-            id='fullWidth'
-          />
-          {err && <StyledCardMessage>{err}</StyledCardMessage>}
-          {sameCityMessage && (
-            <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
-          )}
-        </Grid>
-        <Grid item xs={2}>
-          <Button
-            onClick={handleOnclick}
-            variant='outlined'
-            sx={{ backgroundColor: "#EFA00B ", height: 40 }}
-          >
-            <img src={imgPlus} alt='Plus circle' />
-          </Button>
-        </Grid>
-      </Grid>
+      <AddCity
+        inputValue={inputValue}
+        err={err}
+        sameCityMessage={sameCityMessage}
+        handeOnChange={handeOnChange}
+        handleOnclick={handleOnclick}
+      ></AddCity>
       <CityCards cityItems={cityItems} />
     </Box>
   );
