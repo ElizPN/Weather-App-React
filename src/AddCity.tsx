@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import imgPlus from "./img/plus-circle.svg";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
-import { fetchWeatherData } from "./request";
+import { fetchWeatherData } from "./weatherService";
 
 
 
