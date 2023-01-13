@@ -13,25 +13,31 @@ interface AddCityProps {
   handleOnclick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const AddCity = (props: AddCityProps) => (
+export const AddCity = ({
+  inputValue,
+  handeOnChange,
+  err,
+  sameCityMessage,
+  handleOnclick,
+}: AddCityProps) => (
   <Grid container spacing={1} minWidth={500}>
     <Grid item xs={6} md={4} lg={4}>
       <TextField
         size='small'
-        value={props.inputValue}
-        onChange={props.handeOnChange}
+        value={inputValue}
+        onChange={handeOnChange}
         fullWidth
         placeholder='e.g. Stockholm'
         id='fullWidth'
       />
-      {props.err && <StyledCardMessage>{props.err}</StyledCardMessage>}
-      {props.sameCityMessage && (
-        <StyledCardMessage>{props.sameCityMessage}</StyledCardMessage>
+      {err && <StyledCardMessage>{err}</StyledCardMessage>}
+      {sameCityMessage && (
+        <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
       )}
     </Grid>
     <Grid item xs={2}>
       <Button
-        onClick={props.handleOnclick}
+        onClick={handleOnclick}
         variant='outlined'
         sx={{
           backgroundColor: "#EFA00B ",
