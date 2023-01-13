@@ -62,20 +62,21 @@ export function WeatherContainer() {
 
       if (cardExists) {
         setSameCityMessage("The weather of this city is already shown 😉");
+        setErr("");
       } else {
         const renderCityItems = [...cityItems];
         renderCityItems.push(cityItem);
         setCictyItems(renderCityItems);
         setSameCityMessage("");
         setInputValue("");
+        setErr("");
       }
     } catch {
       setErr("Please search for a valid city!");
+      setSameCityMessage("");
     }
 
-    setErr("");
-    setInputValue("");
-    setSameCityMessage("");
+  
   };
 
   return (
