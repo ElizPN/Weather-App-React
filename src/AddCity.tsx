@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import { ChangeEventHandler, MouseEventHandler } from "react";
 import imgPlus from "./img/plus-circle.svg";
 import { StyledCardMessage } from "./WeatherContainer";
+import { styled } from "@mui/material/styles";
 
 interface AddCityProps {
   inputValue: string;
@@ -12,6 +13,11 @@ interface AddCityProps {
   sameCityMessage: string | null;
   handleOnclick: MouseEventHandler<HTMLButtonElement>;
 }
+
+export const StyledButton = styled(Button)(() => ({
+  backgroundColor: "#EFA00B ",
+  height: 40,
+}));
 
 export const AddCity = ({
   inputValue,
@@ -36,16 +42,9 @@ export const AddCity = ({
       )}
     </Grid>
     <Grid item xs={2}>
-      <Button
-        onClick={handleOnclick}
-        variant='outlined'
-        sx={{
-          backgroundColor: "#EFA00B ",
-          height: 40,
-        }}
-      >
+      <StyledButton onClick={handleOnclick} variant='outlined'>
         <img src={imgPlus} alt='Plus circle' />
-      </Button>
+      </StyledButton>
     </Grid>
   </Grid>
 );
