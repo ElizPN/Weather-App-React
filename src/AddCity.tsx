@@ -35,6 +35,7 @@ export const AddCity = ({
         fullWidth
         placeholder='e.g. Stockholm'
         id='fullWidth'
+        data-testid="add-city"
       />
       {err && <StyledCardMessage>{err}</StyledCardMessage>}
       {sameCityMessage && (
