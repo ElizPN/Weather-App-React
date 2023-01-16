@@ -30,7 +30,7 @@ export const AddCity = ({
 }: AddCityProps) => (
   <Container>
     <Typography
-    data-testid="title"
+      data-testid='title'
       sx={{ fontWeight: "bold", marginBottom: 5, fontSize: "2.375rem" }}
       variant='h4'
     >
@@ -46,7 +46,7 @@ export const AddCity = ({
           fullWidth
           placeholder='e.g. Stockholm'
           id='fullWidth'
-          data-testid='city-field'
+          data-testid='add-city-field'
         />
         {err && <StyledCardMessage>{err}</StyledCardMessage>}
         {sameCityMessage && (
@@ -54,7 +54,11 @@ export const AddCity = ({
         )}
       </Grid>
       <Grid item xs={2}>
-        <StyledButton onClick={handleOnclick} variant='outlined'>
+        <StyledButton
+          onClick={handleOnclick}
+          variant='outlined'
+          data-testid='add-button'
+        >
           <img src={imgPlus} alt='Plus circle' />
         </StyledButton>
       </Grid>
