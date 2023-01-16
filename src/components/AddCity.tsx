@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import { ChangeEventHandler, MouseEventHandler } from "react";
-import imgPlus from "./img/plus-circle.svg";
+import imgPlus from "../img/plus-circle.svg";
 import { StyledCardMessage } from "./WeatherContainer";
 import { styled } from "@mui/material/styles";
 
@@ -35,7 +35,7 @@ export const AddCity = ({
         fullWidth
         placeholder='e.g. Stockholm'
         id='fullWidth'
-        data-testid="add-city"
+        data-testid='add-city'
       />
       {err && <StyledCardMessage>{err}</StyledCardMessage>}
       {sameCityMessage && (

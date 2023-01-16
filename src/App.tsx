@@ -1,5 +1,5 @@
 import React from "react";
-import { WeatherContainer } from "./WeatherContainer";
+import { WeatherContainer } from "./components/WeatherContainer";
 
 import "./App.css";
 

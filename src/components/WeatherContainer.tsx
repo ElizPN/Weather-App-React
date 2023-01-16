@@ -3,7 +3,7 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
-import { fetchWeatherData } from "./weatherService";
+import { fetchWeatherData } from "../weatherService";
 import { AddCity } from "./AddCity";
 
 export interface CityItem {
@@ -75,8 +75,6 @@ export function WeatherContainer() {
       setErr("Please search for a valid city!");
       setSameCityMessage("");
     }
-
-  
   };
 
   return (
