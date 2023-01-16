@@ -5,6 +5,8 @@ import { ChangeEventHandler, MouseEventHandler } from "react";
 import imgPlus from "../img/plus-circle.svg";
 import { StyledCardMessage } from "./WeatherContainer";
 import { styled } from "@mui/material/styles";
+import { Typography } from "@mui/material";
+import { Container } from "@mui/system";
 
 interface AddCityProps {
   inputValue: string;
@@ -26,26 +28,36 @@ export const AddCity = ({
   sameCityMessage,
   handleOnclick,
 }: AddCityProps) => (
-  <Grid container spacing={1} minWidth={500}>
-    <Grid item xs={6} md={4} lg={4}>
-      <TextField
-        size='small'
-        value={inputValue}
-        onChange={handeOnChange}
-        fullWidth
-        placeholder='e.g. Stockholm'
-        id='fullWidth'
-        data-testid='add-city'
-      />
-      {err && <StyledCardMessage>{err}</StyledCardMessage>}
-      {sameCityMessage && (
-        <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
-      )}
+  <Container>
+    <Typography
+    data-testid="title"
+      sx={{ fontWeight: "bold", marginBottom: 5, fontSize: "2.375rem" }}
+      variant='h4'
+    >
+      {" "}
+      Add location
+    </Typography>
+    <Grid container spacing={1} minWidth={500}>
+      <Grid item xs={6} md={4} lg={4}>
+        <TextField
+          size='small'
+          value={inputValue}
+          onChange={handeOnChange}
+          fullWidth
+          placeholder='e.g. Stockholm'
+          id='fullWidth'
+          data-testid='city-field'
+        />
+        {err && <StyledCardMessage>{err}</StyledCardMessage>}
+        {sameCityMessage && (
+          <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
+        )}
+      </Grid>
+      <Grid item xs={2}>
+        <StyledButton onClick={handleOnclick} variant='outlined'>
+          <img src={imgPlus} alt='Plus circle' />
+        </StyledButton>
+      </Grid>
     </Grid>
-    <Grid item xs={2}>
-      <StyledButton onClick={handleOnclick} variant='outlined'>
-        <img src={imgPlus} alt='Plus circle' />
-      </StyledButton>
-    </Grid>
-  </Grid>
+  </Container>
 );
