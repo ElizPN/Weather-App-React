@@ -43,6 +43,8 @@ export function WeatherContainer({ fetchWeatherData }: any) {
         throw new Error(`${weatherData.cod}, ${weatherData.message}`);
       }
       const { weather, main, sys, name } = weatherData;
+      console.log(weatherData);
+
       const icon = `img/weather-icons/${weather[0]["icon"]}.svg`;
 
       const cityItem = {
