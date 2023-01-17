@@ -3,7 +3,6 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
-import { fetchWeatherData } from "../weatherService";
 import { AddCity } from "./AddCity";
 
 export interface CityItem {
@@ -21,7 +20,7 @@ export const StyledCardMessage = styled(Card)(() => ({
   padding: 2,
 }));
 
-export function WeatherContainer() {
+export function WeatherContainer({ fetchWeatherData }: any) {
   const [inputValue, setInputValue] = useState<string>("");
   const [cityItems, setCictyItems] = useState<CityItem[]>([]);
   const [err, setErr] = useState<string | null>(null);
