@@ -12,8 +12,15 @@ interface CityItemsProps {
 export default function CityCards({ cityItems }: CityItemsProps) {
   return (
     <Grid container gap={2} mt={10}>
-      {cityItems.map((item: CityItem) => (
-        <Grid key={nanoid()} item xs={6} md={4} lg={3}>
+      {cityItems.map((item: CityItem, index) => (
+        <Grid
+          key={nanoid()}
+          item
+          data-testid={`city-card-${index}`}
+          xs={6}
+          md={4}
+          lg={3}
+        >
           <Card>
             <CardHeader title={item.cityName} subheader={item.countryName} />
             <CardContent>

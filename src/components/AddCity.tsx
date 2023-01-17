@@ -46,7 +46,9 @@ export const AddCity = ({
           fullWidth
           placeholder='e.g. Stockholm'
           id='fullWidth'
-          data-testid='add-city-field'
+          inputProps={{
+            "data-testid": "add-city-field",
+          }}
         />
         {err && <StyledCardMessage>{err}</StyledCardMessage>}
         {sameCityMessage && (
