@@ -10,22 +10,27 @@ import {
 import { WeatherContainer } from "./WeatherContainer";
 
 describe("WeatherContainer", () => {
-  const fakeWeatherdata = jest.fn().mockImplementation(() => {
-    Promise.resolve({
-      cod: 200,
-      weather: [{ description: "clear sky" }],
-      main: { temp: 15.67 },
-      sys: { country: "ES" },
-      name: "Barcelona",
-    });
+
+const mockResponse = {
+  cod: 200,
+  weather: [{ description: "clear sky" }],
+  main: { temp: 15 },
+  sys: { country: "ES" },
+  name: "Barcelona",
+};
+
+
+
+  const fetchFakeWeatherdata = jest.fn().mockImplementation(() => {
+    Promise.resolve(mockResponse);
   });
 
   test("get data from api", async () => {
-    // Mock fetch request
+  
 
-    // Create fake response (identical data structure that I get from json)
 
-    render(<WeatherContainer fetchWeatherData={fakeWeatherdata} />);
+    render(<WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />);
+    console.log(fetchFakeWeatherdata);
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
