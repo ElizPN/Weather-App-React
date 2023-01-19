@@ -21,7 +21,7 @@ describe("WeatherContainer", () => {
     return Promise.resolve(mockError);
   });
 
-  test("after clicking the Add button, display a CityCard with the city entered in the input", async () => {
+  it("should render city card after get successful response from api", async () => {
     render(<WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />);
 
     const addCityTextField = screen.getByTestId("add-city-field");
@@ -32,7 +32,7 @@ describe("WeatherContainer", () => {
     });
 
     expect(addCityTextField).toBeInTheDocument();
-    
+
     const addButton = screen.getByTestId("add-button");
     act(() => {
       fireEvent.click(addButton);
@@ -41,7 +41,7 @@ describe("WeatherContainer", () => {
     expect(await screen.findByTestId("city-card-0")).toBeInTheDocument();
   });
 
-  test("error 404", async () => {
+  it("should show error message when invalid city", async () => {
     render(<WeatherContainer fetchWeatherData={fetchFakeError} />);
 
     const addCityTextField = screen.getByTestId("add-city-field");
@@ -59,5 +59,37 @@ describe("WeatherContainer", () => {
     });
 
     expect(await screen.findByTestId("404-error")).toBeInTheDocument();
+  });
+
+  it("Should message about same city, if same city already exists in a list", async () => {
+    render(<WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />);
+
+    const addCityTextField = screen.getByTestId("add-city-field");
+    act(() => {
+      fireEvent.change(addCityTextField, {
+        target: { value: "Barcelona" },
+      });
+    });
+
+    expect(addCityTextField).toBeInTheDocument();
+
+    const addButton = screen.getByTestId("add-button");
+    act(() => {
+      fireEvent.click(addButton);
+    });
+
+    await screen.findByTestId("city-card-0");
+
+    act(() => {
+      fireEvent.change(addCityTextField, {
+        target: { value: "Barcelona" },
+      });
+    });
+
+    act(() => {
+      fireEvent.click(addButton);
+    });
+
+    expect(await screen.findByTestId("same-city-message")).toBeInTheDocument();
   });
 });
