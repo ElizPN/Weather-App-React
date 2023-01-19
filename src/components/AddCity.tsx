@@ -50,9 +50,13 @@ export const AddCity = ({
             "data-testid": "add-city-field",
           }}
         />
-        {err && <StyledCardMessage>{err}</StyledCardMessage>}
+        {err && (
+          <StyledCardMessage data-testid='404-error'>{err}</StyledCardMessage>
+        )}
         {sameCityMessage && (
-          <StyledCardMessage>{sameCityMessage}</StyledCardMessage>
+          <StyledCardMessage data-testid='same-city-message'>
+            {sameCityMessage}
+          </StyledCardMessage>
         )}
       </Grid>
       <Grid item xs={2}>
