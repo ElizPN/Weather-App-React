@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test -- --config=jest.config.ts",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.3.0",
     "gh-pages": "^4.0.0"
   }
 }
