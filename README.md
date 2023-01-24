@@ -2,7 +2,7 @@
 
 With this app you can check the weather in any city in the world. The icons in the Weather app indicate different weather conditions.
 
-Deployed to GitHub Pages: https://elizpn.github.io/Weather-App-React/
+Life App is here: https://elizpn.github.io/Weather-App-React/
 
 -  Language - [TypeScript](https://www.typescriptlang.org/)
 -  Data storage - 
