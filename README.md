@@ -12,7 +12,7 @@ Deployed to GitHub Pages: https://elizpn.github.io/Weather-App-React/
 -  Styles - [Material UI](https://mui.com/) 
 
 # Demo: 
-<img src="./public/img/readme-images/weather-app.gif" title="Weather-app-demo"
+<img src="./public/img/readme-images/weather-app.gif" title="Weather-app-demo">
 
 ## Available Scripts
 
