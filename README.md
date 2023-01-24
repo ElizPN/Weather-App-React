@@ -5,7 +5,7 @@ With this app you can check the weather in any city in the world. The icons in t
 Deployed to GitHub Pages: https://elizpn.github.io/Weather-App-React/
 
 -  Language - [TypeScript](https://www.typescriptlang.org/)
--  Data storage - [Local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
+-  Data storage - 
 -  Client Framework - [React](https://reactjs.org)
 -  Unit testing - [Jest](https://jestjs.io), [React Testing Library](https://testing-library.com)
 -  E2E testing - [Cypress] (https://www.cypress.io/)
