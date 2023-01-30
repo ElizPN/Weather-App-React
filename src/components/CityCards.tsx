@@ -1,15 +1,14 @@
 import Box from "@mui/material/Box";
 import { nanoid } from "nanoid";
-import { CityItem } from "./WeatherContainer";
+import { CityItem, CityItemsContext } from "./WeatherContainer";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { CardContent, CardHeader, Typography } from "@mui/material";
+import { useContext } from "react";
 
-interface CityItemsProps {
-  cityItems: CityItem[];
-}
+export default function CityCards() {
+const cityItems = useContext(CityItemsContext);
 
-export default function CityCards({ cityItems }: CityItemsProps) {
   return (
     <Grid container gap={2} mt={10}>
       {cityItems.map((item: CityItem, index) => (

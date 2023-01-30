@@ -1,5 +1,5 @@
 import CityCards from "./CityCards";
-import { useState } from "react";
+import { useState, createContext } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
@@ -12,6 +12,7 @@ export interface CityItem {
   weatherDecription: string;
   weatherIcon: string;
 }
+export const CityItemsContext = createContext<CityItem[]>([]);
 
 export const StyledCardMessage = styled(Card)(() => ({
   backgroundColor: "#162b47",
@@ -78,15 +79,17 @@ export function WeatherContainer({ fetchWeatherData }: any) {
   };
 
   return (
-    <Box m={10}>
-      <AddCity
-        inputValue={inputValue}
-        err={err}
-        sameCityMessage={sameCityMessage}
-        handeOnChange={handeOnChange}
-        handleOnclick={handleOnclick}
-      ></AddCity>
-      <CityCards cityItems={cityItems} />
-    </Box>
+    <CityItemsContext.Provider value={cityItems}>
+      <Box m={10}>
+        <AddCity
+          inputValue={inputValue}
+          err={err}
+          sameCityMessage={sameCityMessage}
+          handeOnChange={handeOnChange}
+          handleOnclick={handleOnclick}
+        ></AddCity>
+        <CityCards />
+      </Box>
+    </CityItemsContext.Provider>
   );
 }
