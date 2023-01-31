@@ -3,13 +3,12 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { AddCity } from "./AddCity";
 
 describe("AddCity", () => {
-  test("TextField for adding city exists", () => {
-    const handeOnChange = jest.fn();
-    const handleOnclick = jest.fn();
+  const handeOnChange = jest.fn();
+  const handleOnclick = jest.fn();
 
+  test("TextField for adding city exists", () => {
     render(
       <AddCity
-        inputValue={""}
         err={""}
         sameCityMessage={""}
         handeOnChange={handeOnChange}
@@ -21,12 +20,8 @@ describe("AddCity", () => {
   });
 
   test("Add button exists", () => {
-    const handeOnChange = jest.fn();
-    const handleOnclick = jest.fn();
-
     render(
       <AddCity
-        inputValue={""}
         err={""}
         sameCityMessage={""}
         handeOnChange={handeOnChange}
@@ -38,12 +33,8 @@ describe("AddCity", () => {
   });
 
   test("After click on button handleOnclick is called", () => {
-    const handeOnChange = jest.fn();
-    const handleOnclick = jest.fn();
-
     render(
       <AddCity
-        inputValue={"Barcelona"}
         err={""}
         sameCityMessage={""}
         handeOnChange={handeOnChange}
