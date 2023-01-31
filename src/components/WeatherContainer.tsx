@@ -14,7 +14,6 @@ export interface CityItem {
   weatherIcon: string;
 }
 
-
 export const StyledCardMessage = styled(Card)(() => ({
   backgroundColor: "#162b47",
   color: "#efa00b",
@@ -22,14 +21,16 @@ export const StyledCardMessage = styled(Card)(() => ({
   padding: 2,
 }));
 
-export function WeatherContainer({ fetchWeatherData }: {fetchWeatherData: (cityValue: string) => Promise<any>}) {
+export function WeatherContainer({
+  fetchWeatherData,
+}: {
+  fetchWeatherData: (cityValue: string) => Promise<any>;
+}) {
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
 
-
   const { inputValue, setInputValue, cityItems, setCictyItems } =
-    useContext(WeatherContext );
-
+    useContext(WeatherContext);
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -83,17 +84,14 @@ export function WeatherContainer({ fetchWeatherData }: {fetchWeatherData: (cityV
   };
 
   return (
- 
-      <Box m={10}>
-        <AddCity
-          inputValue={inputValue}
-          err={err}
-          sameCityMessage={sameCityMessage}
-          handeOnChange={handeOnChange}
-          handleOnclick={handleOnclick}
-        ></AddCity>
-        <CityCards />
-      </Box>
-   
+    <Box m={10}>
+      <AddCity
+        err={err}
+        sameCityMessage={sameCityMessage}
+        handeOnChange={handeOnChange}
+        handleOnclick={handleOnclick}
+      />
+      <CityCards />
+    </Box>
   );
 }
