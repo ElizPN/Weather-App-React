@@ -1,12 +1,10 @@
 import React from "react";
-import { WeatherContainer } from "./components/WeatherContainer";
-import { fetchWeatherData } from "./services/weatherService";
-
 
 import "./App.css";
+import { WeatherContextBox } from "./components/WeatherContextBox";
 
 function App() {
-  return <WeatherContainer fetchWeatherData={fetchWeatherData} />;
+  return <WeatherContextBox />;
 }
 
 export default App;
