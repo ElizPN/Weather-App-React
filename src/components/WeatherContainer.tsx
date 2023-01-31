@@ -1,9 +1,10 @@
 import CityCards from "./CityCards";
-import { useState, createContext } from "react";
+import { useState, useContext } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
 import { AddCity } from "./AddCity";
+import { WeatherContext } from "./WeatherContextBox";
 
 export interface CityItem {
   cityName: string;
@@ -12,7 +13,7 @@ export interface CityItem {
   weatherDecription: string;
   weatherIcon: string;
 }
-export const CityItemsContext = createContext<CityItem[]>([]);
+
 
 export const StyledCardMessage = styled(Card)(() => ({
   backgroundColor: "#162b47",
@@ -21,11 +22,14 @@ export const StyledCardMessage = styled(Card)(() => ({
   padding: 2,
 }));
 
-export function WeatherContainer({ fetchWeatherData }: any) {
-  const [inputValue, setInputValue] = useState<string>("");
-  const [cityItems, setCictyItems] = useState<CityItem[]>([]);
+export function WeatherContainer({ fetchWeatherData }: {fetchWeatherData: (cityValue: string) => Promise<any>}) {
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
+
+
+  const { inputValue, setInputValue, cityItems, setCictyItems } =
+    useContext(WeatherContext );
+
 
   const handeOnChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -79,7 +83,7 @@ export function WeatherContainer({ fetchWeatherData }: any) {
   };
 
   return (
-    <CityItemsContext.Provider value={cityItems}>
+ 
       <Box m={10}>
         <AddCity
           inputValue={inputValue}
@@ -90,6 +94,6 @@ export function WeatherContainer({ fetchWeatherData }: any) {
         ></AddCity>
         <CityCards />
       </Box>
-    </CityItemsContext.Provider>
+   
   );
 }
