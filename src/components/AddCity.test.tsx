@@ -22,8 +22,7 @@ describe("AddCity", () => {
      };
    });
 
-  test("TextField for adding city exists", () => {
-   
+  it("Should check existing TextField for adding city", () => {
     render(
       <WeatherContext.Provider value={mockContextValue}>
         <AddCity
@@ -38,7 +37,7 @@ describe("AddCity", () => {
     expect(addCityTextField).toBeInTheDocument();
   });
 
-  test("Add button exists", () => {
+  it("Should check existing Add button", () => {
   
     render(
       <WeatherContext.Provider value={mockContextValue}>
@@ -54,8 +53,7 @@ describe("AddCity", () => {
     expect(addButton).toBeInTheDocument();
   });
 
-  test("After click on button handleOnclick is called", () => {
-   
+  it("Should call handleOnclick after click on button", () => {
     render(
       <WeatherContext.Provider value={mockContextValue}>
         <AddCity
