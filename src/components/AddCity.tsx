@@ -21,7 +21,7 @@ export const StyledButton = styled(Button)(() => ({
   height: 40,
 }));
 
-export function AddCity({
+export default function AddCity({
   handeOnChange,
   err,
   sameCityMessage,

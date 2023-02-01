@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { AddCity } from "./AddCity";
+import AddCity  from "./AddCity";
 import { WeatherContext } from "./WeatherContextBox";
 
 describe("AddCity", () => {
