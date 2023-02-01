@@ -25,7 +25,7 @@ describe("WeatherContainer", () => {
         weatherIcon: "02b",
       },
     ],
-    setCictyItems: jest.fn(),
+    setCityItems: jest.fn(),
   };
 
   jest.mock("react", () => {
@@ -71,12 +71,16 @@ describe("WeatherContainer", () => {
   });
 
   it("should show error message when invalid city", async () => {
-    render(<WeatherContainer fetchWeatherData={fetchFakeError} />);
+    render(
+      <WeatherContext.Provider value={mockContextValue}>
+        <WeatherContainer fetchWeatherData={fetchFakeError} />
+      </WeatherContext.Provider>
+    );
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
       fireEvent.change(addCityTextField, {
-        target: { value: "incorrect city" },
+        target: { value: "Barcelona" },
       });
     });
 

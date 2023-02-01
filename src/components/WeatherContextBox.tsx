@@ -6,7 +6,7 @@ interface WeatherContextType {
   inputValue: string;
   setInputValue: (value: string) => void;
   cityItems: CityItem[];
-  setCictyItems: (value: CityItem[]) => void;
+  setCityItems: (value: CityItem[]) => void;
 }
 
 export const WeatherContext = createContext<WeatherContextType>(
@@ -15,9 +15,14 @@ export const WeatherContext = createContext<WeatherContextType>(
 
 export function WeatherContextBox() {
   const [inputValue, setInputValue] = useState<string>("");
-  const [cityItems, setCictyItems] = useState<CityItem[]>([]);
+  const [cityItems, setCityItems] = useState<CityItem[]>([]);
 
-  const contextValue = { inputValue, setInputValue, cityItems, setCictyItems };
+  const contextValue = {
+    inputValue,
+    setInputValue,
+    cityItems,
+    setCityItems,
+  };
 
   return (
     <WeatherContext.Provider value={contextValue}>

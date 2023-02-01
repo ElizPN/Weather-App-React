@@ -29,7 +29,7 @@ export function WeatherContainer({
   const [err, setErr] = useState<string | null>(null);
   const [sameCityMessage, setSameCityMessage] = useState<string>("");
 
-  const { inputValue, setInputValue, cityItems, setCictyItems } =
+  const { inputValue, setInputValue, cityItems, setCityItems } =
     useContext(WeatherContext);
 
   const handeOnChange = (
@@ -72,7 +72,7 @@ export function WeatherContainer({
       } else {
         const renderCityItems = [...cityItems];
         renderCityItems.push(cityItem);
-        setCictyItems(renderCityItems);
+        setCityItems(renderCityItems);
         setSameCityMessage("");
         setInputValue("");
         setErr("");

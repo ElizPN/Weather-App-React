@@ -11,7 +11,7 @@ describe("AddCity", () => {
      inputValue: "",
      setInputValue: jest.fn(),
      cityItems: [],
-     setCictyItems: jest.fn(),
+     setCityItems: jest.fn(),
    };
 
    jest.mock("react", () => {
