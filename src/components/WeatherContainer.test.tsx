@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import { screen, render, fireEvent, act } from "@testing-library/react";
 import { WeatherContainer } from "./WeatherContainer";
+import { WeatherContext } from "./WeatherContextBox";
 
 describe("WeatherContainer", () => {
   const mockResponse = {
@@ -10,6 +11,30 @@ describe("WeatherContainer", () => {
     sys: { country: "ES" },
     name: "Barcelona",
   };
+
+  // I am not sure that I need this mock data in this test suite
+  const mockContextValue = {
+    inputValue: "Barcelona",
+    setInputValue: jest.fn(),
+    cityItems: [
+      {
+        cityName: "Barcelona",
+        temperature: 15,
+        countryName: "ES",
+        weatherDecription: "clear sky",
+        weatherIcon: "02b",
+      },
+    ],
+    setCictyItems: jest.fn(),
+  };
+
+  jest.mock("react", () => {
+    const original = jest.requireActual("react");
+    return {
+      ...original,
+      useContext: jest.fn(() => mockContextValue),
+    };
+  });
 
   const fetchFakeWeatherdata = jest.fn().mockImplementation(() => {
     return Promise.resolve(mockResponse);
@@ -22,7 +47,11 @@ describe("WeatherContainer", () => {
   });
 
   it("should render city card after get successful response from api", async () => {
-    render(<WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />);
+    render(
+      <WeatherContext.Provider value={mockContextValue}>
+        <WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />
+      </WeatherContext.Provider>
+    );
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
@@ -61,8 +90,12 @@ describe("WeatherContainer", () => {
     expect(await screen.findByTestId("404-error")).toBeInTheDocument();
   });
 
-  it("Should message about same city, if same city already exists in a list", async () => {
-    render(<WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />);
+  it("Should show message about same city, if same city already exists in a list", async () => {
+    render(
+      <WeatherContext.Provider value={mockContextValue}>
+        <WeatherContainer fetchWeatherData={fetchFakeWeatherdata} />
+      </WeatherContext.Provider>
+    );
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
