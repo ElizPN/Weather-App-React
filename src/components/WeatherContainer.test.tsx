@@ -10,10 +10,6 @@ import { CityItem, WeatherContainer } from "./WeatherContainer";
 import { WeatherContext } from "./WeatherContextBox";
 import { useState } from "react";
 
-// type MockWeatherContextBox = {
-//   children: React.ReactNode;
-// };
-
 function fakeResponce(mockService: {}) {
   function MockWeatherContextBox() {
     const [inputValue, setInputValue] = useState<string>("");
@@ -40,15 +36,6 @@ function fakeResponce(mockService: {}) {
   return <MockWeatherContextBox />;
 }
 
-//jest.mock("./CityCards", () => jest.fn(() => <div>CityCards component</div>));
-//jest.mock("./AddCity", () => jest.fn(() => <div>AddCity component</div>));
-
-// const fetchWeatherData = jest.fn();
-// const cityItems: CityItem[] = [];
-// const setCityItems = jest.fn();
-// const inputValue = "";
-// const setInputValue = jest.fn();
-
 describe("WeatherContainer", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -63,8 +50,6 @@ describe("WeatherContainer", () => {
   };
 
   const mockError = { cod: "404", message: "city not found" };
-
-
 
   it("should call fetchWeatherData with correct parameter", async () => {
     render(fakeResponce(positiveMockResponse));
@@ -88,13 +73,12 @@ describe("WeatherContainer", () => {
   it("should show error message when invalid city", async () => {
     render(fakeResponce(mockError));
 
-     const addCityTextField = screen.getByTestId("add-city-field");
-     act(() => {
-       fireEvent.change(addCityTextField, {
-         target: { value: "Oslo" },
-       });
-     });
-
+    const addCityTextField = screen.getByTestId("add-city-field");
+    act(() => {
+      fireEvent.change(addCityTextField, {
+        target: { value: "incorrect value" },
+      });
+    });
 
     const addButton = screen.getByTestId("add-button");
     act(() => {
