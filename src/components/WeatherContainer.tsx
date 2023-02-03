@@ -68,11 +68,13 @@ export function WeatherContainer({
 
       if (cardExists) {
         setSameCityMessage("The weather of this city is already shown 😉");
+        console.log("lll");
         setErr("");
       } else {
         const renderCityItems = [...cityItems];
         renderCityItems.push(cityItem);
         setCityItems(renderCityItems);
+        console.log("ooo");
         setSameCityMessage("");
         setInputValue("");
         setErr("");
