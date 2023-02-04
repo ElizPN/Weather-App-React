@@ -49,9 +49,9 @@ describe("WeatherContainer", () => {
     name: "Barcelona",
   };
 
-  const mockError = { cod: "404", message: "city not found" };
+  const mockErrorResponce = { cod: "404", message: "city not found" };
 
-  it.skip("should call fetchWeatherData with correct parameter", async () => {
+  it("should render city card with positive responce from API", async () => {
     render(fakeResponce(positiveMockResponse));
 
     const addCityTextField = screen.getByTestId("add-city-field");
@@ -70,8 +70,8 @@ describe("WeatherContainer", () => {
     expect(await screen.findByTestId("city-card-0")).toBeInTheDocument();
   });
 
-  it.skip("should show error message when invalid city", async () => {
-    render(fakeResponce(mockError));
+  it("should show error message when invalid city", async () => {
+    render(fakeResponce(mockErrorResponce));
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
@@ -88,38 +88,26 @@ describe("WeatherContainer", () => {
     expect(await screen.findByTestId("404-error")).toBeInTheDocument();
   });
 
-  it("Should show message about same city, if same city already exists in a list", async () => {
+  it("should show message about same city if same city already exists in a list", async () => {
     render(fakeResponce(positiveMockResponse));
 
     const addCityTextField = screen.getByTestId("add-city-field");
     act(() => {
       fireEvent.change(addCityTextField, {
-        target: { value: "Rome" },
+        target: { value: "Barcelona" },
       });
-    });
-
-    expect(addCityTextField).toBeInTheDocument();
-
-    const addButton = screen.getByTestId("add-button");
-    act(() => {
-      fireEvent.click(addButton);
+      fireEvent.click(screen.getByTestId("add-button"));
     });
 
     await screen.findByTestId("city-card-0");
 
     act(() => {
       fireEvent.change(addCityTextField, {
-        target: { value: "Oslo" },
+        target: { value: "Barcelona" },
       });
+      fireEvent.click(screen.getByTestId("add-button"));
     });
 
-    act(() => {
-      fireEvent.click(addButton);
-    });
-  
-    // expect(await screen.findByTestId("same-city-message")).toBeInTheDocument();
-    expect(
-      await screen.findByTestId("same-city-message")
-    ).not.toBeInTheDocument();
+    expect(await screen.findByTestId("same-city-message")).toBeInTheDocument();
   });
 });
