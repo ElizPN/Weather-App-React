@@ -5,7 +5,7 @@ With this app you can check the weather in any city in the world. The icons in t
 Life App is here: https://elizpn.github.io/Weather-App-React/
 
 -  Language - [TypeScript](https://www.typescriptlang.org/)
--  Data storage - 
+-  Data storage - React Context
 -  Client Framework - [React](https://reactjs.org)
 -  Unit testing - [Jest](https://jestjs.io), [React Testing Library](https://testing-library.com)
 -  E2E testing - [Cypress] (https://www.cypress.io/)
