@@ -11,8 +11,11 @@ Life App is here: https://elizpn.github.io/Weather-App-React/
 -  E2E testing - [Cypress](https://www.cypress.io/)
 -  Styles - [Material UI](https://mui.com/) 
 
-# Demo: 
+# Demo desctop version: 
 <img src="./public/img/readme-images/weather-app.gif" title="Weather-app-demo">
+
+# Demo mobile version: 
+<img src="./public/img/readme-images/mobile.gif" title="mob-demo">
 
 ## Available Scripts
 
