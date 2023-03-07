@@ -8,7 +8,7 @@ Life App is here: https://elizpn.github.io/Weather-App-React/
 -  Data storage - React Context
 -  Client Framework - [React](https://reactjs.org)
 -  Unit testing - [Jest](https://jestjs.io), [React Testing Library](https://testing-library.com)
--  E2E testing - [Cypress] (https://www.cypress.io/)
+-  E2E testing - [Cypress](https://www.cypress.io/)
 -  Styles - [Material UI](https://mui.com/) 
 
 # Demo: 
