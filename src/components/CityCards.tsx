@@ -11,13 +11,14 @@ export default function CityCards() {
   const { cityItems } = useContext(WeatherContext);
 
   return (
-    <Grid container gap={2} mt={10}>
+    <Grid container gap={1} mt={10}>
       {cityItems.map((item: CityItem, index) => (
         <Grid
           key={nanoid()}
           item
           data-testid={`city-card-${index}`}
           xs={12}
+          sm={4}
           md={4}
           lg={3}
         >
