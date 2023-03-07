@@ -17,7 +17,7 @@ export default function CityCards() {
           key={nanoid()}
           item
           data-testid={`city-card-${index}`}
-          xs={6}
+          xs={12}
           md={4}
           lg={3}
         >
