@@ -19,9 +19,7 @@ architecture.png
 # Demo mobile version: 
 <img src="./public/img/readme-images/mobile.gif" title="mob-demo">
 
-## Available Scripts
 
-In the project directory, you can run:
 
 
 
