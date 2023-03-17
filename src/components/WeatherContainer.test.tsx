@@ -1,11 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
-import {
-  screen,
-  render,
-  fireEvent,
-  act,
-  waitFor,
-} from "@testing-library/react";
+import { screen, render, fireEvent, act } from "@testing-library/react";
 import { CityItem, WeatherContainer } from "./WeatherContainer";
 import { WeatherContext } from "./WeatherContextBox";
 import { useState } from "react";
