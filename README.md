@@ -23,7 +23,7 @@ Life App is here: https://elizpn.github.io/Weather-App-React/
 <img src="./public/img/readme-images/mobile.gif" title="mob-demo">
 
 # Demo cypress testing: 
-<img src="./public/img/readme-images/cypress.gif" title="mob-demo">
+<img src="./public/img/readme-images/cypress.gif" title="cypress-demo">
 
 
 
